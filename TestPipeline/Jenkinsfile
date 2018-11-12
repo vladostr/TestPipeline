@@ -18,7 +18,7 @@ pipeline {
             }
         }
 	   stage('Process the rest') {
-            when { branch 'master' }
+            when { not { anyOf { branch 'master'; branch 'staging' } } }
             steps {
                 sh 'echo "Build another branch $BRANCH_NAME"'
             }
