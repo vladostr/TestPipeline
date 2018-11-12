@@ -23,4 +23,5 @@ pipeline {
                 sh 'Build another branch $BRANCH_NAME'
             }
         }
+    }
 }
