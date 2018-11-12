@@ -20,7 +20,7 @@ pipeline {
 	   stage('Process the rest') {
             when { branch 'master' }
             steps {
-                sh 'Build another branch $BRANCH_NAME'
+                sh 'echo "Build another branch $BRANCH_NAME"'
             }
         }
     }
