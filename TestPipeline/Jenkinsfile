@@ -1,0 +1,27 @@
+agent any
+    tools{
+			maven 'myMaven-3'
+			jdk 'myJDK-1.8'
+		 } 
+	stages{
+		stage('Build Selected branshes') {
+            when { branch 'dev*' }
+            steps {
+                echo '1. Build'
+                sh 'echo "Build for $BRANCH_NAME"'
+            }
+        }
+        stage('Push selected branches to Artifactory') {
+            when { branch 'dev*' }
+            steps {
+                echo '2. Load to Artifactory'
+                sh 'echo "Artifactory for $BRANCH_NAME"'
+            }
+        }
+	   stage('Process the rest') {
+            when { branch 'master' }
+            steps {
+                echo '1. Build for $BRANCH_NAME'
+                sh 'mvn clean package -f $WORKSPACE/vladwebtest/pom.xml'
+            }
+        }
