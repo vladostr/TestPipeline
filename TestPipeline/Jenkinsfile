@@ -21,9 +21,11 @@ pipeline {
             when { not { anyOf { branch 'dev1'; branch 'dev2' } } }
             steps {
                 sh 'echo "Build another branch $BRANCH_NAME"'
-                
+                notifyStarted()
             }
         }
-        def notifyStarted() { /* .. */ }
     }   
+    void notifyStarted() { 
+    	sh 'ls /'
+    }
 }
