@@ -25,7 +25,7 @@ pipeline {
             }
         }
     }   
-    void notifyStarted() { 
+}
+void notifyStarted() { 
     	sh 'ls /'
-    }
 }
