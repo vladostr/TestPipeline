@@ -21,6 +21,16 @@ pipeline {
             when { not { anyOf { branch 'dev1'; branch 'dev2' } } }
             steps {
                 sh 'echo "Build another branch $BRANCH_NAME"'
+                
+                //publish report
+	            publishHTML ([
+	        		allowMissing: false,
+	        		alwaysLinkToLastBuild: false,
+	        		keepAll: true,
+			        reportDir: 'coverage',
+			        reportFiles: 'index.html',
+			        reportName: "RCov Report"
+				])
             }
         }
     }
