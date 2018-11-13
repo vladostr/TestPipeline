@@ -5,7 +5,7 @@ pipeline {
 			jdk 'myJDK-1.8'
 		 } 
 	stages{
-		stage('Build Selected branshes') {
+		stage('Build Selected branches') {
             when { branch 'dev*' }
             steps {
                 sh 'echo "Build for $BRANCH_NAME"'
@@ -22,15 +22,6 @@ pipeline {
             steps {
                 sh 'echo "Build another branch $BRANCH_NAME"'
                 
-                //publish report
-	            publishHTML ([
-	        		allowMissing: false,
-	        		alwaysLinkToLastBuild: false,
-	        		keepAll: true,
-			        reportDir: 'coverage',
-			        reportFiles: 'index.html',
-			        reportName: "RCov Report"
-				])
             }
         }
     }
